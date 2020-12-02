@@ -78,7 +78,7 @@ ycsm_install() {
 
 
   ycsm_action "Copy nginx.conf, maps & security configuration into nginx folder"
-  cp -rf maps security /etc/nginx
+  #cp -rf maps security /etc/nginx
   mv /etc/nginx/nginx.conf /etc/nginx/nginx.conf.bak 
   cp -rf ./nginx.conf /etc/nginx/nginx.conf
   check_errors
@@ -123,10 +123,12 @@ ycsm_initialize() {
   ycsm_action "Move Sites..."
   mv /var/www/html/index.html /var/www/html/index.html.bak
   cp -rf ./sites/index.html /var/www/html/index.html
-  mkdir -p /var/www/html/static/js
-  cp -rf ./sites/jquery-2.2.4.min.js /var/www/html/static/js/jquery-2.2.4.min.js
+  #mkdir -p /var/www/html/static/js
+  #cp -rf ./sites/jquery-2.2.4.min.js /var/www/html/static/js/jquery-2.2.4.min.js
   check_errors
-    
+  
+  mv $CONF_DST /etc/nginx/sites-enabled/$domain_name.conf
+  
   ycsm_action "Restarting Nginx..."
   systemctl restart nginx.service
   check_errors
