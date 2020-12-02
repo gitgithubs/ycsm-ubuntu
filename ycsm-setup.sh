@@ -76,11 +76,6 @@ ycsm_install() {
   #apt-get update
   #apt-get install python-certbot-nginx -t stretch-backports
 
-   
-
-  ycsm_action "Adding cronjob..."
-  cp ycsm-cron /etc/cron.d/ycsm
-  check_errors
 
   ycsm_action "Copy nginx.conf, maps & security configuration into nginx folder"
   cp -rf maps security /etc/nginx
